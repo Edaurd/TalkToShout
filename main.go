@@ -2,19 +2,21 @@ package main
 
 import (
 	"strings"
+	"time"
 
 	g "xabbo.b7c.io/goearth"
 	"xabbo.b7c.io/goearth/shockwave/out"
+	"xabbo.b7c.io/goearth/shockwave/room"
 )
 
 var ext = g.NewExt(g.ExtInfo{
 	Title:       "Talk To Shout",
 	Description: "Shout To Talk, reverses the functionality for ease of use :)",
-	Version:     "1.0",
+	Version:     "1.1",
 	Author:      "Eduard, b7",
 })
 
-var emoteBlock bool
+var roomMgr = room.NewManager(ext)
 
 func main() {
 	ext.Intercept(out.CHAT).With(handleTalk)
@@ -22,35 +24,37 @@ func main() {
 	ext.Run()
 }
 
-func handleShout(e *g.InterceptArgs) {
-	msg := e.Packet.ReadString()
-	handleEmotes(msg)
-	e.Block()
-	if !emoteBlock {
-		ext.Send(out.CHAT, msg)
+func handleShout(e *g.Intercept) {
+	e.Packet.Header = ext.Headers().Get(out.SHOUT)
+	if handleCommands(e.Packet.ReadString()) {
+		e.Block()
 	}
 }
-func handleTalk(e *g.InterceptArgs) {
-	msg := e.Packet.ReadString()
-	handleEmotes(msg)
-	e.Block()
-	if !emoteBlock {
-		ext.Send(out.SHOUT, msg)
+func handleTalk(e *g.Intercept) {
+	e.Packet.Header = ext.Headers().Get(out.SHOUT)
+	if handleCommands(e.Packet.ReadString()) {
+		e.Block()
 	}
 }
 
-func handleEmotes(msg string) {
-	if msg == "/dance" {
-		emoteBlock = true
+func handleCommands(msg string) bool {
+	if msg == ":dance" {
 		ext.Send(out.DANCE)
-	} else if strings.Contains(msg, "o/") {
-		if msg == "o/" {
-			emoteBlock = true
-		} else {
-			emoteBlock = false
+		return true
+	} else if msg == ":pickall" {
+		if roomMgr.IsOwner {
+			go func() {
+				for _, obj := range roomMgr.Objects {
+					ext.Send(out.ADDSTRIPITEM, []byte("new stuff "+obj.Id))
+					time.Sleep(time.Millisecond * 500)
+				}
+			}()
+			return true
 		}
+		return false
+	} else if strings.Contains(msg, "o/") {
 		ext.Send(out.WAVE)
-	} else {
-		emoteBlock = false
+		return msg == "o/"
 	}
+	return false
 }
