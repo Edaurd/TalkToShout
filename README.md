@@ -19,7 +19,12 @@ Switching rooms makes you always select Say instead of Shout by default and I wa
 
 ### Buildcommand used:
 `go build -ldflags -H=windowsgui`
-I also included a build.bat script in case anyone wants to build it easily themselves
+
+`$env:GOOS="darwin"; go build -o bin/${Name}-mac .`
+
+`$env:GOOS="linux"; go build -o bin/${Name}-linux .`
+
+I also included a build.ps1 script in case anyone wants to build it easily themselves
 
 ### Credits:
 - me for this
