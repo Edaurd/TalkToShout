@@ -1,4 +1,4 @@
-:: thank you b7
+# thank you b7
 $Name="extension"
 echo "Building for Linux..."
 $env:GOOS="linux"; go build -o bin/${Name}-linux .
