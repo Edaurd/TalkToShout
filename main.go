@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 	"time"
 
@@ -12,7 +13,7 @@ import (
 var ext = g.NewExt(g.ExtInfo{
 	Title:       "Talk To Shout",
 	Description: "Shout To Talk, reverses the functionality for ease of use :)",
-	Version:     "1.1",
+	Version:     "1.1.1",
 	Author:      "Eduard, b7",
 })
 
@@ -25,14 +26,16 @@ func main() {
 }
 
 func handleShout(e *g.Intercept) {
-	e.Packet.Header = ext.Headers().Get(out.SHOUT)
+	e.Packet.Header = ext.Headers().Get(out.CHAT)
 	if handleCommands(e.Packet.ReadString()) {
 		e.Block()
 	}
 }
 func handleTalk(e *g.Intercept) {
 	e.Packet.Header = ext.Headers().Get(out.SHOUT)
-	if handleCommands(e.Packet.ReadString()) {
+	test := handleCommands(e.Packet.ReadString())
+	fmt.Println(test)
+	if test {
 		e.Block()
 	}
 }
