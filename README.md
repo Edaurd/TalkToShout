@@ -8,7 +8,7 @@ Converts talking packets to shouting packets and the otherway around using [GoEa
 - Converts Outgoing SHOUT packet to CHAT
 - Dance from chat using `:dance`
 - Wave by saying `o/` (anywhere in the text)
-- Hold shift to talk
+- Hold shift to NOT shout
 - **NEW** `:pickall` to pick up all the furni from your room
 
 ### Known Issues
@@ -17,11 +17,14 @@ Converts talking packets to shouting packets and the otherway around using [GoEa
 ### why?
 Switching rooms makes you always select Say instead of Shout by default and I want to switch the functionality of these 2 so that talk will be shout and shout will be talk, 
 
-### Buildcommand used:
-`go build -ldflags -H=windowsgui`
+### Buildcommands used:
+Windows:
+`go build -ldflags -H=windowsgui -o bin/${Name}-win .`
 
+MacOS:
 `$env:GOOS="darwin"; go build -o bin/${Name}-mac .`
 
+Linux:
 `$env:GOOS="linux"; go build -o bin/${Name}-linux .`
 
 I also included a build.ps1 script in case anyone wants to build it easily themselves
