@@ -52,6 +52,10 @@ func handleCommands(msg string) bool {
 					ext.Send(out.ADDSTRIPITEM, []byte("new stuff "+strconv.Itoa(obj.Id)))
 					time.Sleep(time.Millisecond * 500)
 				}
+				for _, item := range roomMgr.Items {
+					ext.Send(out.ADDSTRIPITEM, []byte("new item "+strconv.Itoa(item.Id)))
+					time.Sleep(time.Millisecond * 500)
+				}
 			}()
 			return true
 		}
