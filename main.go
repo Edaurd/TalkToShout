@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 	"time"
 
@@ -48,7 +49,7 @@ func handleCommands(msg string) bool {
 		if roomMgr.IsOwner {
 			go func() {
 				for _, obj := range roomMgr.Objects {
-					ext.Send(out.ADDSTRIPITEM, []byte("new stuff "+obj.Id))
+					ext.Send(out.ADDSTRIPITEM, []byte("new stuff "+strconv.Itoa(obj.Id)))
 					time.Sleep(time.Millisecond * 500)
 				}
 			}()
