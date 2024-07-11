@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 	"time"
 
@@ -13,7 +14,7 @@ import (
 var ext = g.NewExt(g.ExtInfo{
 	Title:       "Talk To Shout",
 	Description: "Shout To Talk, reverses the functionality for ease of use :)",
-	Version:     "1.1.1",
+	Version:     "1.1.2",
 	Author:      "Eduard, b7",
 })
 
@@ -48,7 +49,11 @@ func handleCommands(msg string) bool {
 		if roomMgr.IsOwner {
 			go func() {
 				for _, obj := range roomMgr.Objects {
-					ext.Send(out.ADDSTRIPITEM, []byte("new stuff "+obj.Id))
+					ext.Send(out.ADDSTRIPITEM, []byte("new stuff "+strconv.Itoa(obj.Id)))
+					time.Sleep(time.Millisecond * 500)
+				}
+				for _, item := range roomMgr.Items {
+					ext.Send(out.ADDSTRIPITEM, []byte("new item "+strconv.Itoa(item.Id)))
 					time.Sleep(time.Millisecond * 500)
 				}
 			}()
