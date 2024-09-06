@@ -1,7 +1,9 @@
 module TalkToShout
 
-go 1.22.4
+go 1.23
 
-require xabbo.b7c.io/goearth v0.2.6
+toolchain go1.23.0
 
-require golang.org/x/exp v0.0.0-20240707233637-46b078467d37 // indirect
+require xabbo.b7c.io/goearth v0.4.0
+
+require golang.org/x/exp v0.0.0-20240904232852-e7e105dedf7e // indirect

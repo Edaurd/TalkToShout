@@ -2,7 +2,11 @@ golang.org/x/exp v0.0.0-20240613232115-7f521ea00fb8 h1:yixxcjnhBmY0nkL253HFVIm0J
 golang.org/x/exp v0.0.0-20240613232115-7f521ea00fb8/go.mod h1:jj3sYF3dwk5D+ghuXyeI3r5MFf+NT2An6/9dOA95KSI=
 golang.org/x/exp v0.0.0-20240707233637-46b078467d37 h1:uLDX+AfeFCct3a2C7uIWBKMJIR3CJMhcgfrUAqjRK6w=
 golang.org/x/exp v0.0.0-20240707233637-46b078467d37/go.mod h1:M4RDyNAINzryxdtnbRXRL/OHtkFuWGRjvuhBJpk2IlY=
+golang.org/x/exp v0.0.0-20240904232852-e7e105dedf7e h1:I88y4caeGeuDQxgdoFPUq097j7kNfw6uvuiNxUBfcBk=
+golang.org/x/exp v0.0.0-20240904232852-e7e105dedf7e/go.mod h1:akd2r19cwCdwSwWeIdzYQGa/EZZyqcOdwWiwj5L5eKQ=
 xabbo.b7c.io/goearth v0.0.1 h1:YRiHKcbX67YJJYdSwtAvm/9fFHoz1P8smCzOXJYBJ54=
 xabbo.b7c.io/goearth v0.0.1/go.mod h1:2SdOFXPXIW/+XAFw31E4kFTFuO5bpUiqNKG0rU/NeBQ=
 xabbo.b7c.io/goearth v0.2.6 h1:66WhDnPqR8csz7LRkm0CH8lz0FkOjucQHO1nHJHZuAM=
 xabbo.b7c.io/goearth v0.2.6/go.mod h1:2SdOFXPXIW/+XAFw31E4kFTFuO5bpUiqNKG0rU/NeBQ=
+xabbo.b7c.io/goearth v0.4.0 h1:89N8JMQo4EiwFvuq+8jw+t+wonFb4LqIYXpX3QjFh3E=
+xabbo.b7c.io/goearth v0.4.0/go.mod h1:6s+shq3X0CO5L2Jt6t6yHMCzsNHA1jU2IbpvOqgFkpo=
