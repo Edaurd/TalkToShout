@@ -15,7 +15,7 @@ import (
 var ext = g.NewExt(g.ExtInfo{
 	Title:       "Talk To Shout",
 	Description: "Shout To Talk, reverses the functionality for ease of use :)",
-	Version:     "1.1.2",
+	Version:     "1.2",
 	Author:      "Eduard, b7",
 })
 
