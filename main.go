@@ -7,6 +7,7 @@ import (
 	"time"
 
 	g "xabbo.b7c.io/goearth"
+	"xabbo.b7c.io/goearth/shockwave/in"
 	"xabbo.b7c.io/goearth/shockwave/out"
 	"xabbo.b7c.io/goearth/shockwave/room"
 )
@@ -23,6 +24,7 @@ var roomMgr = room.NewManager(ext)
 func main() {
 	ext.Intercept(out.CHAT).With(handleTalk)
 	ext.Intercept(out.SHOUT).With(handleShout)
+	ext.Intercept(in.PING).With(handleAfk)
 	ext.Run()
 }
 
@@ -46,14 +48,14 @@ func handleCommands(msg string) bool {
 		ext.Send(out.DANCE)
 		return true
 	} else if msg == ":pickall" {
-		if roomMgr.IsOwner {
+		if roomMgr.IsOwner() {
 			go func() {
-				for _, obj := range roomMgr.Objects {
+				for obj := range roomMgr.Objects {
 					ext.Send(out.ADDSTRIPITEM, []byte("new stuff "+strconv.Itoa(obj.Id)))
 					time.Sleep(time.Millisecond * 500)
 				}
-				for _, item := range roomMgr.Items {
-					ext.Send(out.ADDSTRIPITEM, []byte("new item "+strconv.Itoa(item.Id)))
+				for item := range roomMgr.Items {
+					ext.Send(out.ADDSTRIPITEM, []byte("new stuff "+strconv.Itoa(item.Id)))
 					time.Sleep(time.Millisecond * 500)
 				}
 			}()
@@ -65,4 +67,10 @@ func handleCommands(msg string) bool {
 		return msg == "o/"
 	}
 	return false
+}
+
+func handleAfk(e *g.Intercept) {
+	if roomMgr.IsInRoom() {
+		ext.Send(out.MOVE, int16(-1), int16(-1))
+	}
 }
