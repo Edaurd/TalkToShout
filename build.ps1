@@ -1,5 +1,5 @@
 # thank you b7
-$Name="extension"
+$Name="TalkToShout"
 echo "Building for Linux..."
 $env:GOOS="linux"; go build -o bin/${Name}-linux .
 echo "Building for Mac..."

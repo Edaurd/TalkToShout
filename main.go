@@ -37,7 +37,7 @@ func handleShout(e *g.Intercept) {
 func handleTalk(e *g.Intercept) {
 	e.Packet.Header = ext.Headers().Get(out.SHOUT)
 	test := handleCommands(e.Packet.ReadString())
-	fmt.Println(test)
+	fmt.Println(test) // this i still need to rename and remove lol, oops forgot about it
 	if test {
 		e.Block()
 	}
